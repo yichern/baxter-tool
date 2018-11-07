@@ -55,7 +55,7 @@
 
     <!-- mocap bodies -->
     <equality>
-        <weld body1="mocap" body2="left_gripper_base" solimp="0.95 0.95 0.01" solref="0.008 1"></weld>
+        <weld body1="mocap" body2="right_gripper_base" solimp="0.9 0.95 0.001" solref="0.02 1"></weld>
     </equality>
 
     <!-- simulator visuals -->

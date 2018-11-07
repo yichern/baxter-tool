@@ -1,10 +1,10 @@
 import numpy as np
 import gym
+import simulation
 
-env = gym.make('FetchReach-v1').env
+env = gym.make('FetchTest-v1')
 while True:
     action = np.random.rand(4)
-    print(np.shape(action))
     env.step(action)
     env.render()
 

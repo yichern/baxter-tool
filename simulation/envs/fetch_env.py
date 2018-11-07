@@ -1,6 +1,6 @@
 import numpy as np
 
-from simulation.envs import rotations, robot_env, utils
+from gym.envs.robotics import rotations, robot_env, utils
 
 
 def goal_distance(goal_a, goal_b):
@@ -8,7 +8,7 @@ def goal_distance(goal_a, goal_b):
     return np.linalg.norm(goal_a - goal_b, axis=-1)
 
 
-class BaxterEnv(robot_env.RobotEnv):
+class FetchEnv(robot_env.RobotEnv):
     """Superclass for all Fetch environments.
     """
 
@@ -43,7 +43,7 @@ class BaxterEnv(robot_env.RobotEnv):
         self.distance_threshold = distance_threshold
         self.reward_type = reward_type
 
-        super(BaxterEnv, self).__init__(
+        super(FetchEnv, self).__init__(
             model_path=model_path, n_substeps=n_substeps, n_actions=4,
             initial_qpos=initial_qpos)
 
@@ -63,8 +63,8 @@ class BaxterEnv(robot_env.RobotEnv):
 
     def _step_callback(self):
         if self.block_gripper:
-            self.sim.data.set_joint_qpos('r_gripper_l_finger_joint', 0.)
-            self.sim.data.set_joint_qpos('r_gripper_r_finger_joint', 0.)
+            self.sim.data.set_joint_qpos('robot0:l_gripper_finger_joint', 0.)
+            self.sim.data.set_joint_qpos('robot0:r_gripper_finger_joint', 0.)
             self.sim.forward()
 
     def _set_action(self, action):
@@ -87,17 +87,17 @@ class BaxterEnv(robot_env.RobotEnv):
 
     def _get_obs(self):
         # positions
-        grip_pos = self.sim.data.get_site_xpos('grip')
+        grip_pos = self.sim.data.get_site_xpos('robot0:grip')
         dt = self.sim.nsubsteps * self.sim.model.opt.timestep
-        grip_velp = self.sim.data.get_site_xvelp('grip') * dt
+        grip_velp = self.sim.data.get_site_xvelp('robot0:grip') * dt
         robot_qpos, robot_qvel = utils.robot_get_obs(self.sim)
         if self.has_object:
-            object_pos = self.sim.data.get_site_xpos('box')
+            object_pos = self.sim.data.get_site_xpos('object0')
             # rotations
-            object_rot = rotations.mat2euler(self.sim.data.get_site_xmat('box'))
+            object_rot = rotations.mat2euler(self.sim.data.get_site_xmat('object0'))
             # velocities
-            object_velp = self.sim.data.get_site_xvelp('box') * dt
-            object_velr = self.sim.data.get_site_xvelr('box') * dt
+            object_velp = self.sim.data.get_site_xvelp('object0') * dt
+            object_velr = self.sim.data.get_site_xvelr('object0') * dt
             # gripper state
             object_rel_pos = object_pos - grip_pos
             object_velp -= grip_velp
@@ -121,14 +121,14 @@ class BaxterEnv(robot_env.RobotEnv):
             'desired_goal': self.goal.copy(),
         }
 
-    # def _viewer_setup(self):
-    #     body_id = self.sim.model.body_name2id('robot0:gripper_link')
-    #     lookat = self.sim.data.body_xpos[body_id]
-    #     for idx, value in enumerate(lookat):
-    #         self.viewer.cam.lookat[idx] = value
-    #     self.viewer.cam.distance = 2.5
-    #     self.viewer.cam.azimuth = 132.
-    #     self.viewer.cam.elevation = -14.
+    def _viewer_setup(self):
+        body_id = self.sim.model.body_name2id('robot0:gripper_link')
+        lookat = self.sim.data.body_xpos[body_id]
+        for idx, value in enumerate(lookat):
+            self.viewer.cam.lookat[idx] = value
+        self.viewer.cam.distance = 2.5
+        self.viewer.cam.azimuth = 132.
+        self.viewer.cam.elevation = -14.
 
     def _render_callback(self):
         # Visualize target.
@@ -136,7 +136,6 @@ class BaxterEnv(robot_env.RobotEnv):
         site_id = self.sim.model.site_name2id('target0')
         self.sim.model.site_pos[site_id] = self.goal - sites_offset[0]
         self.sim.forward()
-        print(self.sim.model.site_pos[site_id])
 
     def _reset_sim(self):
         self.sim.set_state(self.initial_state)
@@ -146,10 +145,10 @@ class BaxterEnv(robot_env.RobotEnv):
             object_xpos = self.initial_gripper_xpos[:2]
             while np.linalg.norm(object_xpos - self.initial_gripper_xpos[:2]) < 0.1:
                 object_xpos = self.initial_gripper_xpos[:2] + self.np_random.uniform(-self.obj_range, self.obj_range, size=2)
-            object_qpos = self.sim.data.get_joint_qpos('box:joint')
+            object_qpos = self.sim.data.get_joint_qpos('object0:joint')
             assert object_qpos.shape == (7,)
             object_qpos[:2] = object_xpos
-            self.sim.data.set_joint_qpos('box:joint', object_qpos)
+            self.sim.data.set_joint_qpos('object0:joint', object_qpos)
 
         self.sim.forward()
         return True
@@ -176,14 +175,14 @@ class BaxterEnv(robot_env.RobotEnv):
         self.sim.forward()
 
         # Move end effector into position.
-        gripper_target = np.array([-0.498, 0.005, -0.431 + self.gripper_extra_height]) + self.sim.data.get_site_xpos('grip')
+        gripper_target = np.array([-0.498, 0.005, -0.431 + self.gripper_extra_height]) + self.sim.data.get_site_xpos('robot0:grip')
         gripper_rotation = np.array([1., 0., 1., 0.])
-        self.sim.data.set_mocap_pos('mocap', gripper_target)
-        self.sim.data.set_mocap_quat('mocap', gripper_rotation)
+        self.sim.data.set_mocap_pos('robot0:mocap', gripper_target)
+        self.sim.data.set_mocap_quat('robot0:mocap', gripper_rotation)
         for _ in range(10):
             self.sim.step()
 
         # Extract information for sampling goals.
-        self.initial_gripper_xpos = self.sim.data.get_site_xpos('grip').copy()
+        self.initial_gripper_xpos = self.sim.data.get_site_xpos('robot0:grip').copy()
         if self.has_object:
-            self.height_offset = self.sim.data.get_site_xpos('box')[2]
+            self.height_offset = self.sim.data.get_site_xpos('object0')[2]
