@@ -136,7 +136,9 @@ class BaxterEnv(robot_env.RobotEnv):
         site_id = self.sim.model.site_name2id('target0')
         self.sim.model.site_pos[site_id] = self.goal - sites_offset[0]
         self.sim.forward()
-        print(self.sim.model.site_pos[site_id])
+        # print(self.sim.model.site_pos[site_id])
+        # print(self.goal)
+        # print(sites_offset[0])
 
     def _reset_sim(self):
         self.sim.set_state(self.initial_state)
