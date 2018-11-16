@@ -128,14 +128,19 @@
                                                         <inertial pos="0 0 0" mass="0.0001" diaginertia="0 0 0" />
                                                     </body>-->
 
-                                                     <body name="tool" pos="-0.1 0 0.1127" quat="0.5 -0.5 -0.5 -0.5">
-                                                        <inertial pos="0 0 0" mass="0.001" diaginertia="1e-008 1e-008 1e-008" />
-                                                        <geom type="box" class="viz" size="0.01 0.1 0.005" rgba="0 0 1 0.8" pos="0 0 0" />
+                                                    <body name="tool" pos="-0.1 0 0.1127" quat="0.5 -0.5 -0.5 -0.5">
+                                                        <inertial pos="0 0 0" mass="2" diaginertia="1e-08 1e-08 1e-08" />
+                                                        <joint name="tool_joint" pos="0 0 0" axis="0 1 0" type="slide" range="0 0.020833" />
+                                                        <!-- <geom type="box" class="viz" size="0.01 0.1 0.005" rgba="0 0 1 0.8" pos="0 0 0"/> -->
+                                                        <geom size="0.01 0.1 0.005" pos="0 0 0" quat="0 0 0 -1" type="box" rgba="0.1 0.1 0.1 1"/>
                                                     </body>
 
+                                                   <!--  <body name="tool" pos="0 0 0.2">
+                                                        <inertial pos="0 0 0" quat="0 0 0 -1" mass="0.02" diaginertia="0.01 0.01 0.01" />
+                                                        <geom class="viz" mesh="extended_narrow" euler="1.57 1.57 0" rgba="0.1 0.1 0.1 1"/>
+                                                    </body> -->
 
                                                     <body name="r_gripper_l_finger" pos="0 -0.0015 0.02">
-
                                                         <inertial pos="0 0 0" quat="0 0 0 -1" mass="0.02" diaginertia="0.01 0.01 0.01" />
                                                         <joint name="r_gripper_l_finger_joint" pos="0 0 0" axis="0 1 0" type="slide" range="0 0.020833" />
                                                         <geom class="viz" mesh="extended_narrow" euler="1.57 1.57 0" rgba="0.1 0.1 0.1 1"/>
