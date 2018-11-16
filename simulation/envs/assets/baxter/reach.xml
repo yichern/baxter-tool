@@ -12,7 +12,7 @@
     <worldbody>
         <!-- world variables -->
         <light directional="false" castshadow="false" cutoff="90" exponent="1" diffuse="1 1 1" specular="0 0 0" pos="1 0 1.5" dir="-1 0 -2.5"/>
-        <geom name="ground" type="plane" material="MatPlane" pos="0 0 -0.925" size="4 4 .05" rgba="0.7 0.6 0.5 1"/>
+        <geom name="ground" type="plane" material="MatPlane" pos="0 0 -0.95" size="4 4 .05" rgba="0.7 0.6 0.5 1"/>
 
         <!-- <body pos="0.6 0.0 -0.21" name="table0">
             <site name="target0" pos="0 0 0.5" size="0.02 0.02 0.02" rgba="1 0 0 1" type="sphere"></site>
