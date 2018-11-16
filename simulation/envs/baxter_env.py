@@ -177,13 +177,13 @@ class BaxterEnv(robot_env.RobotEnv):
         utils.reset_mocap_welds(self.sim)
         self.sim.forward()
 
-        # Move end effector into position.
-        gripper_target = np.array([-0.498, 0.005, -0.431 + self.gripper_extra_height]) + self.sim.data.get_site_xpos('grip')
-        gripper_rotation = np.array([1., 0., 1., 0.])
-        self.sim.data.set_mocap_pos('mocap', gripper_target)
-        self.sim.data.set_mocap_quat('mocap', gripper_rotation)
-        for _ in range(10):
-            self.sim.step()
+        # # Move end effector into position.
+        # gripper_target = np.array([-0.498, 0.005, -0.431 + self.gripper_extra_height]) + self.sim.data.get_site_xpos('grip')
+        # gripper_rotation = np.array([1., 0., 1., 0.])
+        # self.sim.data.set_mocap_pos('mocap', gripper_target)
+        # self.sim.data.set_mocap_quat('mocap', gripper_rotation)
+        # for _ in range(10):
+        #     self.sim.step()
 
         # Extract information for sampling goals.
         self.initial_gripper_xpos = self.sim.data.get_site_xpos('grip').copy()
