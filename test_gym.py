@@ -3,8 +3,13 @@ import gym
 import simulation
 
 env = gym.make('FetchTest-v1')
+target = np.array([1.3, 0.75, -0.7])
 while True:
-    action = np.random.rand(4)
+    observed = env._get_obs()
+    current_pos = observed['observation'][:3]
+    deltas = target - current_pos
+    action = np.array(deltas)
+    action = np.append(action, [0.0])
     env.step(action)
     env.render()
 
