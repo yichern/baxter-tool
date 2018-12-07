@@ -1,0 +1,167 @@
+1-baxter-no-penalty
+python train_baxter.py --env BaxterReachEnv-v1 --load False --save-path 1-baxter-no-penalty --train-timesteps 1.25e6 --eval-timesteps 5e3
+python render_baxter.py --env BaxterReachEnv-v1 --load-path 1-baxter-no-penalty --fig-path 1-baxter-no-penalty
+
+2-baxter-penalty
+python train_baxter.py --env BaxterReachEnv-v1 --load False --save-path 2-baxter-penalty --train-timesteps 1.25e6 --eval-timesteps 5e3
+python render_baxter.py --env BaxterReachEnv-v1 --load-path 2-baxter-penalty --fig-path 2-baxter-penalty
+
+3-baxter-no-penalty
+python train_baxter.py --env BaxterReachEnv-v1 --load False --save-path 3-baxter-no-penalty --train-timesteps 6.25e5 --eval-timesteps 5e3
+python render_baxter.py --env BaxterReachEnv-v1 --load-path 3-baxter-no-penalty --fig-path 3-baxter-no-penalty
+
+4-baxter-tool-mocap
+python train_baxter.py --env BaxterReachEnv-v1 --load False --save-path 4-baxter-tool-mocap --train-timesteps 2e5 --eval-timesteps 5e3
+python render_baxter.py --env BaxterReachEnv-v1 --load-path 4-baxter-tool-mocap --fig-path 4-baxter-tool-mocap
+
+4-baxter-tool-mocap-2
+python train_baxter.py --env BaxterReachEnv-v1 --load False --save-path 4-baxter-tool-mocap-2 --train-timesteps 6e4 --eval-timesteps 5e3
+python render_baxter.py --env BaxterReachEnv-v1 --load-path 4-baxter-tool-mocap-2 --fig-path 4-baxter-tool-mocap-2
+
+4-baxter-tool-mocap-no-joint
+python train_baxter.py --env BaxterReachEnv-v1 --load False --save-path 4-baxter-tool-mocap-no-joint --train-timesteps 6e4 --eval-timesteps 5e3
+python render_baxter.py --env BaxterReachEnv-v1 --load-path 4-baxter-tool-mocap-no-joint --fig-path 4-baxter-tool-mocap-no-joint
+
+5-baxter
+python train_baxter.py --env BaxterReachEnv-v5 --load False --save-path 5-baxter --train-timesteps 1.25e6 --eval-timesteps 5e3
+python render_baxter.py --env BaxterReachEnv-v5 --load-path 5-baxter --fig-path 5-baxter
+
+6-baxter
+python train_baxter.py --env BaxterReachEnv-v6 --load False --save-path 6-baxter --train-timesteps 1.25e6 --eval-timesteps 5e3
+python render_baxter.py --env BaxterReachEnv-v6 --load-path 6-baxter --fig-path 6-baxter
+
+7-baxter
+python train_baxter.py --env BaxterReachEnv-v7 --load False --save-path 7-baxter --train-timesteps 1.25e6 --eval-timesteps 5e3
+python render_baxter.py --env BaxterReachEnv-v7 --load-path 7-baxter --fig-path 7-baxter
+
+8-baxter
+python train_baxter.py --env BaxterReachEnv-v8 --load False --save-path 8-baxter --train-timesteps 1.25e6 --eval-timesteps 5e3
+python render_baxter.py --env BaxterReachEnv-v8 --load-path 8-baxter --fig-path 8-baxter
+
+8-baxter-2
+python train_baxter.py --env BaxterReachEnv-v8 --load True --save-path 8-baxter-2 --load-path 8-baxter --train-timesteps 1.25e6 --eval-timesteps 5e3
+python render_baxter.py --env BaxterReachEnv-v8 --load-path 8-baxter-2 --fig-path 8-baxter-2
+
+9-baxter
+python train_baxter.py --env BaxterReachEnv-v9 --load False --save-path 9-baxter --train-timesteps 1.25e6 --eval-timesteps 5e3
+python render_baxter.py --env BaxterReachEnv-v9 --load-path 9-baxter --fig-path 9-baxter
+
+10-baxter
+python train_baxter.py --env BaxterReachEnv-v10 --load False --save-path 10-baxter --train-timesteps 1.25e6 --eval-timesteps 5e3
+python render_baxter.py --env BaxterReachEnv-v10 --load-path 10-baxter --fig-path 10-baxter
+
+11-baxter
+python train_baxter.py --env BaxterReachEnv-v11 --load False --save-path 11-baxter --train-timesteps 1.25e6 --eval-timesteps 5e3
+python render_baxter.py --env BaxterReachEnv-v11 --load-path 11-baxter --fig-path 11-baxter
+
+11-baxter-2
+python train_baxter.py --env BaxterReachEnv-v11 --load False --save-path 11-baxter-2 --train-timesteps 6.25e5 --eval-timesteps 5e3
+python render_baxter.py --env BaxterReachEnv-v11 --load-path 11-baxter-2 --fig-path 11-baxter-2
+
+11-baxter-3
+python train_baxter.py --env BaxterReachEnv-v11 --load False --save-path 11-baxter-3 --train-timesteps 1.25e6 --eval-timesteps 5e3
+python render_baxter.py --env BaxterReachEnv-v11 --load-path 11-baxter-3 --fig-path 11-baxter-3
+
+11-baxter-4
+python train_baxter.py --env BaxterReachEnv-v11 --load False --save-path 11-baxter-4 --train-timesteps 1.25e6 --eval-timesteps 5e3
+python render_baxter.py --env BaxterReachEnv-v11 --load-path 11-baxter-4 --fig-path 11-baxter-4
+
+12-baxter-1 (BEST)
+python train_baxter.py --env BaxterReachEnv-v12 --load True --save-path 12-baxter-1 --load-path 11-baxter --train-timesteps 2.25e5 --eval-timesteps 5e3
+python render_baxter.py --env BaxterReachEnv-v12 --load-path 12-baxter-1 --fig-path 12-baxter-1
+
+12-baxter-2 (SECOND BEST)
+python train_baxter.py --env BaxterReachEnv-v12 --load True --save-path 12-baxter-2 --load-path 11-baxter --train-timesteps 3.25e5 --eval-timesteps 5e3
+python render_baxter.py --env BaxterReachEnv-v12 --load-path 12-baxter-2 --fig-path 12-baxter-2
+
+13-baxter
+python train_baxter.py --env BaxterReachEnv-v12 --load False --save-path 13-baxter --train-timesteps 1.25e6 --eval-timesteps 5e3
+python render_baxter.py --env BaxterReachEnv-v12 --load-path 13-baxter --fig-path 13-baxter
+
+13-baxter-ctd
+python train_baxter.py --env BaxterReachEnv-v12 --load True --save-path 13-baxter-ctd --load-path 13-baxter --train-timesteps 2.25e5 --eval-timesteps 5e3
+python render_baxter.py --env BaxterReachEnv-v12 --load-path 13-baxter-ctd --fig-path 13-baxter-ctd
+
+a2c-baxter-1
+python train_baxter_a2c.py --env BaxterReachEnv-v1 --load False --save-path a2c-baxter-1 --train-timesteps 1.25e6 --eval-timesteps 5e3
+python render_baxter_a2c.py --env BaxterReachEnv-v1 --load-path a2c-baxter-1 --fig-path a2c-baxter-1
+
+a2c-baxter-11
+python train_baxter_a2c.py --env BaxterReachEnv-v11 --load False --save-path a2c-baxter-11 --train-timesteps 1.25e6 --eval-timesteps 5e3
+python render_baxter_a2c.py --env BaxterReachEnv-v11 --load-path a2c-baxter-11 --fig-path a2c-baxter-11
+
+a2c-baxter-15
+python train_baxter_a2c.py --env BaxterReachEnv-v15 --load False --save-path a2c-baxter-15 --train-timesteps 1.25e6 --eval-timesteps 5e3
+python render_baxter_a2c.py --env BaxterReachEnv-v15 --load-path a2c-baxter-15 --fig-path a2c-baxter-15
+
+a2c-baxter-16
+python train_baxter_a2c.py --env BaxterReachEnv-v16 --load False --save-path a2c-baxter-16 --train-timesteps 1.25e6 --eval-timesteps 5e3
+python render_baxter_a2c.py --env BaxterReachEnv-v16 --load-path a2c-baxter-16 --fig-path a2c-baxter-16
+
+a2c-baxter-17
+python train_baxter_a2c.py --env BaxterReachEnv-v17 --load False --save-path a2c-baxter-17 --train-timesteps 1.25e6 --eval-timesteps 5e3
+python render_baxter_a2c.py --env BaxterReachEnv-v17 --load-path a2c-baxter-17 --fig-path a2c-baxter-17
+
+trpo-baxter-1
+python train_baxter_trpo.py --env BaxterReachEnv-v1 --load False --save-path trpo-baxter-1 --train-timesteps 1.25e6 --eval-timesteps 5e3
+python render_baxter_trpo.py --env BaxterReachEnv-v1 --load-path trpo-baxter-1 --fig-path trpo-baxter-1
+
+trpo-baxter-11
+python train_baxter_trpo.py --env BaxterReachEnv-v11 --load False --save-path trpo-baxter-11 --train-timesteps 1.25e6 --eval-timesteps 5e3
+python render_baxter_trpo.py --env BaxterReachEnv-v11 --load-path trpo-baxter-11 --fig-path trpo-baxter-11
+
+trpo-baxter-12-1
+python train_baxter_trpo.py --env BaxterReachEnv-v12 --load True --save-path trpo-baxter-12-1 --load-path trpo-baxter-11 --train-timesteps 2.25e5 --eval-timesteps 5e3
+python render_baxter.py --env BaxterReachEnv-v12 --load-path trpo-baxter-12-1 --fig-path trpo-baxter-12-1
+
+trpo-baxter-12-2
+python train_baxter_trpo.py --env BaxterReachEnv-v12 --load True --save-path trpo-baxter-12-2 --load-path trpo-baxter-11 --train-timesteps 3.25e5 --eval-timesteps 5e3
+python render_baxter.py --env BaxterReachEnv-v12 --load-path trpo-baxter-12-2 --fig-path trpo-baxter-12-2
+
+trpo-baxter-15
+python train_baxter_trpo.py --env BaxterReachEnv-v15 --load False --save-path trpo-baxter-15 --train-timesteps 1.25e6 --eval-timesteps 5e3
+python render_baxter_trpo.py --env BaxterReachEnv-v15 --load-path trpo-baxter-15 --fig-path trpo-baxter-15
+
+trpo-baxter-16
+python train_baxter_trpo.py --env BaxterReachEnv-v16 --load False --save-path trpo-baxter-16 --train-timesteps 1.25e6 --eval-timesteps 5e3
+python render_baxter_trpo.py --env BaxterReachEnv-v16 --load-path trpo-baxter-16 --fig-path trpo-baxter-16
+
+trpo-baxter-17
+python train_baxter_trpo.py --env BaxterReachEnv-v17 --load False --save-path trpo-baxter-17 --train-timesteps 1.25e6 --eval-timesteps 5e3
+python render_baxter_trpo.py --env BaxterReachEnv-v17 --load-path trpo-baxter-17 --fig-path trpo-baxter-17
+
+ddpg-baxter-1
+python train_baxter_ddpg.py --env BaxterReachEnv-v1 --load False --save-path ddpg-baxter-1 --train-timesteps 1.25e6 --eval-timesteps 5e3
+python render_baxter_ddpg.py --env BaxterReachEnv-v1 --load-path ddpg-baxter-1 --fig-path ddpg-baxter-1
+
+ddpg-baxter-1-2
+python train_baxter_ddpg.py --env BaxterReachEnv-v1 --load False --save-path ddpg-baxter-1-2 --train-timesteps 1.25e6 --eval-timesteps 5e3
+python render_baxter_ddpg.py --env BaxterReachEnv-v1 --load-path ddpg-baxter-1-2 --fig-path ddpg-baxter-1-2
+
+ddpg-baxter-11-2
+python train_baxter_ddpg.py --env BaxterReachEnv-v11 --load False --save-path ddpg-baxter-11-2 --train-timesteps 1.25e6 --eval-timesteps 5e3
+python render_baxter_ddpg.py --env BaxterReachEnv-v11 --load-path ddpg-baxter-11-2 --fig-path ddpg-baxter-11-2
+
+ddpg-baxter-15
+python train_baxter_ddpg.py --env BaxterReachEnv-v15 --load False --save-path ddpg-baxter-15 --train-timesteps 1.25e6 --eval-timesteps 5e3
+python render_baxter_ddpg.py --env BaxterReachEnv-v15 --load-path ddpg-baxter-15 --fig-path ddpg-baxter-15
+
+ddpg-baxter-16
+python train_baxter_ddpg.py --env BaxterReachEnv-v16 --load False --save-path ddpg-baxter-16 --train-timesteps 1.25e6 --eval-timesteps 5e3
+python render_baxter_ddpg.py --env BaxterReachEnv-v16 --load-path ddpg-baxter-16 --fig-path ddpg-baxter-16
+
+ddpg-baxter-17
+python train_baxter_ddpg.py --env BaxterReachEnv-v17 --load False --save-path ddpg-baxter-17 --train-timesteps 1.25e6 --eval-timesteps 5e3
+python render_baxter_ddpg.py --env BaxterReachEnv-v17 --load-path ddpg-baxter-17 --fig-path ddpg-baxter-17
+
+15-baxter
+python train_baxter.py --env BaxterReachEnv-v15 --load False --save-path 15-baxter --train-timesteps 1.25e6 --eval-timesteps 5e3
+python render_baxter.py --env BaxterReachEnv-v11 --load-path 15-baxter --fig-path 15-baxter
+
+16-baxter
+python train_baxter.py --env BaxterReachEnv-v16 --load False --save-path 16-baxter --train-timesteps 1.25e6 --eval-timesteps 5e3
+python render_baxter.py --env BaxterReachEnv-v16 --load-path 16-baxter --fig-path 16-baxter
+
+17-baxter
+python train_baxter.py --env BaxterReachEnv-v17 --load False --save-path 17-baxter --train-timesteps 1.25e6 --eval-timesteps 5e3
+python render_baxter.py --env BaxterReachEnv-v17 --load-path 17-baxter --fig-path 17-baxter
