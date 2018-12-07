@@ -125,7 +125,7 @@ def adjusted_pose(p, l):
     q2 = [1,0,0,0]
     offset = tf.transformations.quaternion_multiply(tf.transformations.quaternion_multiply(q1,q2),tf.transformations.quaternion_conjugate(q1))[:3]
     offset *= l
-    print(offset)
+    # print(offset)
     p.position.x += offset[0]
     p.position.y += offset[1]
     p.position.z += offset[2]
@@ -215,7 +215,7 @@ def talker():
     pub.publish(pose)
     time.sleep(5)
 
-    replay = "results-11.txt"
+    replay = "results.txt"
     points = []
     quaternions = []
     with open(replay) as f:
@@ -225,30 +225,30 @@ def talker():
                 line = line.split(" ")
                 print(line)
                 # p = Point(float(line[0])+.3,float(line[1]),float(line[2])-.035)
-                p = Point(float(line[0]),float(line[1]),float(line[2])+0.15)
+                p = Point(float(line[0]),float(line[1]),float(line[2])+0.02)
                 quat = np.array([float(line[3]), float(line[4]), float(line[5]), float(line[6])])
                 quat = quat / np.sqrt((np.sum(quat**2)))
                 q = Quaternion(float(line[3]),float(line[4]),float(line[5]),float(line[6]))
                 # q = Quaternion(quat[0], quat[1], quat[2], quat[3])
                 points.append(p)
                 quaternions.append(q)
-                print(p)
-                print(len(points))
+                # print(p)
+                # print(len(points))
             else:
                 line = line[:-1]
                 line = line.split(" ")
-                print(line)
+                # print(line)
                 # p = Point(float(line[0])+.3,float(line[1]),float(line[2])-.035)
-                p = Point(float(line[0]),float(line[1]),float(line[2]))
+                p = Point(float(line[0]),float(line[1]),float(line[2])+.02)
                 quat = np.array([float(line[3]), float(line[4]), float(line[5]), float(line[6])])
                 quat = quat / np.sqrt((np.sum(quat**2)))
                 q = Quaternion(float(line[3]),float(line[4]),float(line[5]),float(line[6]))
                 # q = Quaternion(quat[0], quat[1], quat[2], quat[3])
                 points.append(p)
                 quaternions.append(q)
-                print(p)
-                print(len(points))
-            print(np.sum(quat**2))
+            #     print(p)
+            #     print(len(points))
+            # print(np.sum(quat**2))
 
     n=0
     while(n != len(points)):
@@ -257,15 +257,15 @@ def talker():
     # while(n != 28):
     # while(n != )
         pose.position = points[n]
-        pose.orientation = quaternions[n]
+        pose.orientation = quaternions[n]#Quaternion(.54,-0.37,-.54,-.54)
         pose = adjusted_pose(pose, offset)
-        rospy.loginfo(pose)
+        # rospy.loginfo(pose)
         pub.publish(pose)
         n += 1
         print("POINT %d" % n)
         if n < 5:
             time.sleep(2)
-        time.sleep(0.5)
+        time.sleep(2)
 
 def image_callback(msg):
     try:
