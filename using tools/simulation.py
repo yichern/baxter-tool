@@ -125,7 +125,7 @@ def adjusted_pose(p, l):
     q2 = [1,0,0,0]
     offset = tf.transformations.quaternion_multiply(tf.transformations.quaternion_multiply(q1,q2),tf.transformations.quaternion_conjugate(q1))[:3]
     offset *= l
-    print(offset)
+    # print(offset)
     p.position.x += offset[0]
     p.position.y += offset[1]
     p.position.z += offset[2]
@@ -137,7 +137,7 @@ def talker():
     pub = rospy.Publisher('/baxter_controller/right/go_to_pose', GoToPose, queue_size=1)
     rospy.init_node('get_images', anonymous=True)
     time.sleep(3)
-    #calibrate
+#     calibrate
     intermediate = Point() # helps solve IC hiccups
     rightHand = baxter_interface.Gripper('right')
     rightHand.calibrate()
@@ -191,46 +191,72 @@ def talker():
     imageType = 0
 
     offset = ((find_length('view_1.jpg')+find_length('view_2.jpg')+find_length('view_3.jpg'))/300)
-    print(offset)
-    # offset = (find_length('view_1.jpg')/100 + find_length('view_3.jpg'))/200
+    offset = 0
 
-    p0 = atTool
-    p0.z += .05
+    # p0 = atTool
+    # p0.z += .05
+    p0 = Point(0.50079665, -0.60082307, -0.02746433)
+    p0_quat = Quaternion(1, 0, 0, 0)
+    # p0_quat = Quaternion(7.00417440e-01, 3.79565735e-06, 7.13733429e-01, -3.96582845e-05)
+
+
     # p1 = Point(0.52,-0.58,-0.05-.035)
     # p2 = Point(0.62,-0.43,-0.11-.035)
     # p3 = Point(0.61,-0.28,-0.11-.035)
     # p4 = Point(0.61,-0.17,-0.12-.035)
 
     pose.orientation = out
+    # pose.orientation = p0_quat
     pose.position = p0
     pose = adjusted_pose(pose, offset)
     rospy.loginfo(pose)
     pub.publish(pose)
-    time.sleep(10)
+    time.sleep(5)
 
     replay = "results.txt"
     points = []
     quaternions = []
     with open(replay) as f:
-        for line in f:
-            line = line[:-1]
-            line = line.split(" ")
-            p = Point(float(line[0]),float(line[1]),float(line[2])-.035)
-            q = Quaternion(float(line[3]),float(line[4]),float(line[5]),float(line[6]))
-            points.append(p)
-            quaternions.append(q)
-            print(p)
-            print(len(points))
+        for i, line in enumerate(f):
+            if i < 3:
+                line = line[:-1]
+                line = line.split(" ")
+                print(line)
+                # p = Point(float(line[0])+.3,float(line[1]),float(line[2])-.035)
+                p = Point(float(line[0]),float(line[1]),float(line[2])+0.02)
+                quat = np.array([float(line[3]), float(line[4]), float(line[5]), float(line[6])])
+                quat = quat / np.sqrt((np.sum(quat**2)))
+                q = Quaternion(float(line[3]),float(line[4]),float(line[5]),float(line[6]))
+                # q = Quaternion(quat[0], quat[1], quat[2], quat[3])
+                points.append(p)
+                quaternions.append(q)
+                # print(p)
+                # print(len(points))
+            else:
+                line = line[:-1]
+                line = line.split(" ")
+                # print(line)
+                # p = Point(float(line[0])+.3,float(line[1]),float(line[2])-.035)
+                p = Point(float(line[0]),float(line[1]),float(line[2])+.02)
+                quat = np.array([float(line[3]), float(line[4]), float(line[5]), float(line[6])])
+                quat = quat / np.sqrt((np.sum(quat**2)))
+                q = Quaternion(float(line[3]),float(line[4]),float(line[5]),float(line[6]))
+                # q = Quaternion(quat[0], quat[1], quat[2], quat[3])
+                points.append(p)
+                quaternions.append(q)
 
     n=0
     while(n != len(points)):
         pose.position = points[n]
-        #pose.orientation = quaternions[n]
+        pose.orientation = quaternions[n]#Quaternion(.54,-0.37,-.54,-.54)
         pose = adjusted_pose(pose, offset)
-        rospy.loginfo(pose)
+        # rospy.loginfo(pose)
         pub.publish(pose)
         n += 1
-        time.sleep(1)
+        print("POINT %d" % n)
+        if n < 5:
+            time.sleep(2)
+        time.sleep(2)
 
 def image_callback(msg):
     try:
@@ -249,4 +275,3 @@ if __name__ == '__main__':
     try:
         talker()
     except rospy.ROSInterruptException: pass
-
