@@ -20,7 +20,7 @@ ___
 
 ## Simulation Baxter
 
-### Installation
+### 1. Installation
 
 #### Anaconda
 Before beginning, ensure that Anaconda is installed. You can install Anaconda [here](https://conda.io/docs/user-guide/install/index.html).
@@ -60,18 +60,18 @@ We do not use OpenAI's baselines [repository](https://github.com/openai/baseline
 3. Add the directory `/baxter-tool/simulation/baxter` to the directory `/gym/gym/envs/` in your Gym installation.
 4. Add the file `/baxter-tool/simulation/__init__.py` to the directory `/gym/gym/envs/` in your Gym installation, replacing the old `__init__.py`.
 
-### Baxter Model
+### 2. Baxter Model
 * The Baxter MuJoCo model is defined in `baxter-tool/simulation/baxter/assets/baxter/`. The specific task model is defined in that directory as `reach.xml`, whereas `robot.xml` and `shared.xml` are relevant to any tasks environments.
 * The general Baxter Gym environment is defined in `baxter-tool/simulation/baxter/baxter_env.py` and `baxter-tool/simulation/baxter/baxter_rot_env.py`. The former forbids learning rotation control of the gripper, while the latter includes learning rotation control.
 * The specific Baxter Gym environment for our task is defined in `baxter-tool/simulation/baxter/tasks/reach.py` and `baxter-tool/simulation/baxter/tasks/reach_rot.py`. The former involves environments using `baxter_env.py` while the latter involves environments using `baxter_rot_env.py`.
 
 If you would like to create a new task environment, first create the xml file in `baxter-tool/simulation/baxter/assets/baxter/`, then create the environment in a python file in `baxter-tool/simulation/baxter/tasks/`.
 
-### Trained Models
+### 3. Trained Models
 
 `baxter-tool/simulation/commands.txt` contains all the commands used to train, evaluate, render, and plot the models for conducting experiments. It also contains an explanation of each of the trained models we provide in `baxter-tool/simulation/models/`. You can render a trained model by running the corresponding command. You can also re-train a model by running the corresponding command.
 
-### Training and Rendering New Models
+### 4. Training and Rendering New Models
 
 #### Training
 
