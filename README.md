@@ -7,7 +7,7 @@ This repository contains the final project deliverables for Team Baxter in CPSC 
 * 1-slide summary of project
 * 1-paragraph description of team member contributions
 
-In addition, the repository contains source code developed under the project. Videos of baxter can be found [here](https://photos.app.goo.gl/E8h28XfiDFvbprtV6).
+In addition, the repository contains source code developed under the project. Videos of Baxter can be found [here](https://photos.app.goo.gl/E8h28XfiDFvbprtV6).
 ___
 
 ## Physical Baxter
@@ -15,6 +15,11 @@ ___
 The directory `baxter-tool/physical/` contains the source code for work on the physical Baxter system.
 
 Run `python simulation.py` to run the script for Baxter to execute tool length detection, offset calculation for kinematics extension, and action trajectory execution. This command must be done on the Baxter workspace at the ScazLab with Baxter turned on, untucked and ROS launched.
+
+1. Turn on Baxter using the switch on the back.
+2. In `/home/scazlab/ros_devel_ws`, run `roslaunch humann_robot_collaboration baxter_controller.launch`.
+3. Using another shell, in the same directory, run `untuck`.
+4. In that same shell, in the directory that contains `simulation.py`, run `python simulation.py`.
 
 ___
 
