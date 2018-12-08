@@ -14,7 +14,7 @@ ___
 
 The directory `baxter-tool/physical/` contains the source code for work on the physical Baxter system.
 
-Run `python simulation.py` to run the script for Baxter to execute tool length detection, offset calculation for kinematics extension, and action trajectory execution. This command must be done on the Baxter workspace at the ScazLab, with Baxter turned on, untucked and ROS launched.
+Run `python simulation.py` to run the script for Baxter to execute tool length detection, offset calculation for kinematics extension, and action trajectory execution. This command must be done on the Baxter workspace at the ScazLab with Baxter turned on, untucked and ROS launched.
 
 ___
 
@@ -69,9 +69,11 @@ If you would like to create a new task environment, first create the xml file in
 
 ### Trained Models
 
-`/baxter-tool/simulation/commands.txt` contains all the commands used to train, evaluate, render, and plot the models for conducting experiments. It also contains an explanation of each of the trained models we provide in `/baxter-tool/simulation/models/`. You can render a trained model by running the corresponding command. You can also re-train a model by running the corresponding command.
+`baxter-tool/simulation/commands.txt` contains all the commands used to train, evaluate, render, and plot the models for conducting experiments. It also contains an explanation of each of the trained models we provide in `baxter-tool/simulation/models/`. You can render a trained model by running the corresponding command. You can also re-train a model by running the corresponding command.
 
 ### Training and Rendering New Models
+
+#### Training
 
 You can train a new PPO model by running `train_baxter.py`. `train_baxter_a2c.py`, `train_baxter_trpo.py` and `train_baxter_ddpg.py` use A2C, TRPO and DDPG respectively for training. The model will be saved under `models/` and the training history will be saved under `logs/`, under the name specified.
 
@@ -88,6 +90,8 @@ Usage:
 - `LoadPath`: if `--load True`, the name of the model saved in `models/` for loading
 - `TrainSteps`: the number of timesteps with which to train the model
 - `EvalSteps`: the number of timesteps with which to evaluate the model
+
+#### Rendering
 
 You can render a trained PPO model by running `render_baxter.py`. `render_baxter_a2c.py`, `render_baxter_trpo.py` and `render_baxter_ddpg.py` use A2C, TRPO and DDPG respectively for rendering. The plot will be saved under `figs/`, under the name specified.
 
